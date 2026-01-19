@@ -34,19 +34,21 @@ export const DemoPage = ({
       )} transition-all duration-500 ease-in-out`}
     >
       {/* 타이틀 */}
-      <button
+      <div
+        role="button"
         onClick={() => leave(handleHomeClick)}
         className="
-          absolute top-4 left-4
-          text-2xl font-bold
-          text-white/80
-          hover:text-white
-          transition-colors
-        "
+    absolute top-4 left-4
+    text-2xl font-bold
+    text-white/80
+    hover:text-white
+    transition-colors
+    select-none
+  "
         aria-label="뒤로가기"
       >
         &lt;
-      </button>
+      </div>
       <h1 className="text-2xl font-bold mb-6 tracking-widest">KIO QUIZ</h1>
 
       {/* 퀴즈 그리드 */}
