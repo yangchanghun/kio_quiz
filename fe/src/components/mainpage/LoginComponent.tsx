@@ -2,12 +2,12 @@ import { usePageTransition } from "../../hooks/usePageTransition";
 import { pageTransitionClass } from "../../utils/pageTransitionClass";
 
 type LoginComponentProps = {
-  handleLoginClick: () => void;
+  // handleLoginClick: () => void;
   handleHomeClick: () => void;
 };
 
 export const LoginComponent = ({
-  handleLoginClick,
+  // handleLoginClick,
   handleHomeClick,
 }: LoginComponentProps) => {
   const { phase, leave } = usePageTransition(300);
@@ -22,20 +22,21 @@ export const LoginComponent = ({
       `}
     >
       {/* ← 뒤로가기 */}
-      <button
+      <div
+        role="button"
         onClick={() => leave(handleHomeClick)}
         className="
-          absolute top-4 left-4
-          text-2xl font-bold
-          text-white/80
-          hover:text-white
-          transition-colors
-        "
+    absolute top-4 left-4
+    text-2xl font-bold
+    text-white/80
+    hover:text-white
+    transition-colors
+    select-none
+  "
         aria-label="뒤로가기"
       >
         &lt;
-      </button>
-
+      </div>
       {/* 아이콘 */}
       <div className="w-20 h-20 mb-6 rounded-full bg-white/20 flex items-center justify-center">
         LOGO
@@ -73,7 +74,7 @@ export const LoginComponent = ({
         </p>
 
         <button
-          onClick={() => leave(handleLoginClick)}
+          // onClick={() => leave(handleLoginClick)}
           className="
             w-full py-3 mt-2 rounded-md
             bg-[#576390]/40 hover:bg-[#4a5170]

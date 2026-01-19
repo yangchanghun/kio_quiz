@@ -6,7 +6,7 @@ import { QuizQuestionPage } from "../components/quiz/fivequestion/QuizQuestionPa
 
 export default function MainPage() {
   const [status, setStatus] = useState<"home" | "login" | "demo" | "quiz">(
-    "home"
+    "home",
   );
 
   const handleLoginClick = () => {
@@ -75,7 +75,7 @@ export default function MainPage() {
         )}
         {status === "login" && (
           <LoginComponent
-            handleLoginClick={handleLoginClick}
+            // handleLoginClick={handleLoginClick}
             handleHomeClick={handleHomeClick}
           />
         )}
