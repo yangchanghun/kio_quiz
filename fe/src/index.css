@@ -4,3 +4,21 @@
 body {
   font-family: Pretendard, sans-serif;
 }
+
+/* 🔥 키오스크 / 모바일 터치 하이라이트 제거 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 🔥 버튼 기본 포커스/테두리 제거 */
+button {
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* 🔥 포커스 잔상 완전 차단 */
+button:focus,
+button:focus-visible {
+  outline: none;
+}
