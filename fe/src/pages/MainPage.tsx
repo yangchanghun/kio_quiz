@@ -86,7 +86,9 @@ export default function MainPage() {
           />
         )}
 
-        {status === "quiz" && <QuizQuestionPage />}
+        {status === "quiz" && (
+          <QuizQuestionPage handleHomeClick={handleHomeClick} />
+        )}
       </div>
     </div>
   );
