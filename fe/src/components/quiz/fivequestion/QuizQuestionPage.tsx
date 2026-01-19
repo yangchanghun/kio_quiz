@@ -5,12 +5,12 @@ import { ChoicesBoxText } from "@/components/common/ChoicesBoxText";
 import { Toggle } from "@/components/common/Toggle";
 import { AnswerModal } from "@/components/common/AnswerModal";
 import { quizSet } from "@/data/testData";
-import { usePageTransition } from "@/hooks/usePageTransition";
-import { pageTransitionClass } from "@/utils/pageTransitionClass";
-type QuizPageProps = {
-  handleHomeClick: () => void;
-};
-export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
+// import { usePageTransition } from "@/hooks/usePageTransition";
+// import { pageTransitionClass } from "@/utils/pageTransitionClass";
+// type QuizPageProps = {
+//   handleHomeClick: () => void;
+// };
+export const QuizQuestionPage = () => {
   // const choicesList = [["1",2"],["3"],["1"]]; 이런식으로 사용자가 선택한 뭐시기
   // 그리고 사용자가 답 고르고 해설 바로보기 터글 선택했으면
   // 바로바로 questions[currentIndex]의 answers 리스트와
@@ -21,7 +21,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
   // 결과보기를 누른 후
   // choiceList와 qustions.answers를 비교하여
   // 해설 보여주기
-  const { phase, leave } = usePageTransition(300);
+  // const { phase, leave } = usePageTransition(300);
   const questions = quizSet.questions; // 퀴즈
 
   const total = questions.length;
@@ -66,7 +66,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
 
   return (
     <div
-      className={`flex-1 flex flex-col items-center px-6 py-6 text-white ${pageTransitionClass(phase)} ransition-all duration-500 ease-in-out`}
+      className={`flex-1 flex flex-col items-center px-6 py-6 text-white ransition-all duration-500 ease-in-out`}
     >
       {/* 문제 번호 */}
       {/* <button
