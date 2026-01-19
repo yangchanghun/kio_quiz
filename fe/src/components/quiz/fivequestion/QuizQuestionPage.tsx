@@ -69,7 +69,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
       className={`flex-1 flex flex-col items-center px-6 py-6 text-white ${pageTransitionClass(phase)} ransition-all duration-500 ease-in-out`}
     >
       {/* 문제 번호 */}
-      <button
+      {/* <button
         onClick={() => leave(handleHomeClick)}
         className="
           absolute top-4 left-4
@@ -81,7 +81,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
         aria-label="뒤로가기"
       >
         &lt;
-      </button>
+      </button> */}
       <div className="mb-3">
         <span className="px-4 py-1 text-sm rounded-full border border-white/50">
           문제 {currentIndex + 1}/{total}
