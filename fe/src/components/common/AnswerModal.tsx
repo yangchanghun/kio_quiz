@@ -7,6 +7,50 @@ type AnswerModalProps = {
   total: number;
 };
 
+// export const AnswerModal = ({
+//   setAnswerModal,
+//   isCorrect,
+//   explanation,
+//   handleNextQuestion,
+//   currentIndex,
+//   total,
+// }: AnswerModalProps) => {
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+//       <div className="w-[90%] max-w-sm rounded-2xl bg-white/95 shadow-2xl p-6 animate-fadeInScale">
+//         <div
+//           className={`text-xl font-bold text-center mb-3 ${
+//             isCorrect ? "text-[#4CAF81]" : "text-[#E05A4F]"
+//           }`}
+//         >
+//           {isCorrect ? "정답입니다 🎉" : "오답입니다"}
+//         </div>
+
+//         {/* 선택한 답 */}
+//         {/* <div className="text-center text-gray-700 mb-4">
+//           선택한 답: <span className="font-semibold">{selectedLabel}</span>
+//         </div> */}
+
+//         {/* 해설 박스 */}
+//         <div className="bg-gray-100 rounded-xl p-4 text-ml text-gray-700 whitespace-pre-line leading-relaxed mb-6">
+//           {explanation}
+//         </div>
+
+//         {/* 버튼 */}
+//         <button
+//           onClick={() => {
+//             setAnswerModal(false);
+//             handleNextQuestion();
+//           }}
+//           className="w-full py-3 rounded-xl bg-[#6EA8C1] text-white font-semibold active:scale-95 transition"
+//         >
+//           {currentIndex === total - 1 ? "결과 보기" : "다음문제"}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
 export const AnswerModal = ({
   setAnswerModal,
   isCorrect,
@@ -16,8 +60,34 @@ export const AnswerModal = ({
   total,
 }: AnswerModalProps) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="w-[90%] max-w-sm rounded-2xl bg-white/95 shadow-2xl p-6 animate-fadeInScale">
+    <div
+      className="
+        fixed
+        left-0
+        top-0
+        w-full
+        flex
+        items-center
+        justify-center
+        bg-black/60
+        z-[9999]
+      "
+      style={{
+        height: "100svh", // 🔥 핵심 (모바일/키오스크 필수)
+      }}
+    >
+      <div
+        className="
+          w-[92%]
+          max-w-sm
+          rounded-2xl
+          bg-white
+          shadow-2xl
+          p-6
+          animate-fadeInScale
+        "
+      >
+        {/* 결과 헤더 */}
         <div
           className={`text-xl font-bold text-center mb-3 ${
             isCorrect ? "text-[#4CAF81]" : "text-[#E05A4F]"
@@ -26,13 +96,21 @@ export const AnswerModal = ({
           {isCorrect ? "정답입니다 🎉" : "오답입니다"}
         </div>
 
-        {/* 선택한 답 */}
-        {/* <div className="text-center text-gray-700 mb-4">
-          선택한 답: <span className="font-semibold">{selectedLabel}</span>
-        </div> */}
-
-        {/* 해설 박스 */}
-        <div className="bg-gray-100 rounded-xl p-4 text-ml text-gray-700 whitespace-pre-line leading-relaxed mb-6">
+        {/* 해설 */}
+        <div
+          className="
+            bg-gray-100
+            rounded-xl
+            p-4
+            text-sm
+            text-gray-700
+            whitespace-pre-line
+            leading-relaxed
+            mb-6
+            max-h-[45svh]
+            overflow-y-auto
+          "
+        >
           {explanation}
         </div>
 
@@ -42,9 +120,19 @@ export const AnswerModal = ({
             setAnswerModal(false);
             handleNextQuestion();
           }}
-          className="w-full py-3 rounded-xl bg-[#6EA8C1] text-white font-semibold active:scale-95 transition"
+          className="
+            w-full
+            py-4
+            rounded-xl
+            bg-[#6EA8C1]
+            text-white
+            text-lg
+            font-semibold
+            active:scale-95
+            transition
+          "
         >
-          {currentIndex === total - 1 ? "결과 보기" : "다음문제"}
+          {currentIndex === total - 1 ? "결과 보기" : "다음 문제"}
         </button>
       </div>
     </div>
