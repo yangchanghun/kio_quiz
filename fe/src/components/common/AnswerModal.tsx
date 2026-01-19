@@ -19,12 +19,16 @@ export const AnswerModal = ({
     <div
       style={{
         position: "fixed",
-        inset: 0,
-        backgroundColor: "rgba(0,0,0,0.6)",
-        zIndex: 2147483647, // WebView 최상위
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100vh",
+        background: "rgba(0, 0, 0, 0.5)",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
+        alignItems: "center",
+        zIndex: 1000,
+        animation: "fadeIn 0.3s ease-in-out",
       }}
     >
       <div
