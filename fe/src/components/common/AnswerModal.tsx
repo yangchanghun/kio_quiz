@@ -1,4 +1,3 @@
-import { createPortal } from "react-dom";
 type AnswerModalProps = {
   setAnswerModal: (value: boolean) => void;
   isCorrect: boolean;
@@ -16,7 +15,7 @@ export const AnswerModal = ({
   currentIndex,
   total,
 }: AnswerModalProps) => {
-  return createPortal(
+  return (
     <div
       style={{
         position: "fixed",
@@ -80,7 +79,6 @@ export const AnswerModal = ({
           {currentIndex === total - 1 ? "결과 보기" : "다음 문제"}
         </button>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 };
