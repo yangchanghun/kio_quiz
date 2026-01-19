@@ -17,35 +17,67 @@ export const AnswerModal = ({
   total,
 }: AnswerModalProps) => {
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="w-[90%] max-w-sm rounded-2xl bg-white/95 shadow-2xl p-6 animate-fadeInScale">
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        backgroundColor: "rgba(0,0,0,0.6)",
+        zIndex: 2147483647, // WebView 최상위
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "90%",
+          maxWidth: 420,
+          background: "#fff",
+          borderRadius: 20,
+          padding: 24,
+        }}
+      >
         <div
-          className={`text-xl font-bold text-center mb-3 ${
-            isCorrect ? "text-[#4CAF81]" : "text-[#E05A4F]"
-          }`}
+          style={{
+            textAlign: "center",
+            fontSize: 22,
+            fontWeight: 700,
+            marginBottom: 12,
+            color: isCorrect ? "#4CAF81" : "#E05A4F",
+          }}
         >
           {isCorrect ? "정답입니다 🎉" : "오답입니다"}
         </div>
 
-        {/* 선택한 답 */}
-        {/* <div className="text-center text-gray-700 mb-4">
-          선택한 답: <span className="font-semibold">{selectedLabel}</span>
-        </div> */}
-
-        {/* 해설 박스 */}
-        <div className="bg-gray-100 rounded-xl p-4 text-ml text-gray-700 whitespace-pre-line leading-relaxed mb-6">
+        <div
+          style={{
+            background: "#f1f1f1",
+            borderRadius: 12,
+            padding: 16,
+            marginBottom: 20,
+            whiteSpace: "pre-line",
+          }}
+        >
           {explanation}
         </div>
 
-        {/* 버튼 */}
         <button
           onClick={() => {
             setAnswerModal(false);
             handleNextQuestion();
           }}
-          className="w-full py-3 rounded-xl bg-[#6EA8C1] text-white font-semibold active:scale-95 transition"
+          style={{
+            width: "100%",
+            height: 52,
+            borderRadius: 14,
+            background: "#6EA8C1",
+            color: "#fff",
+            fontSize: 18,
+            fontWeight: 600,
+            border: "none",
+          }}
         >
-          {currentIndex === total - 1 ? "결과 보기" : "다음문제"}
+          {currentIndex === total - 1 ? "결과 보기" : "다음 문제"}
         </button>
       </div>
     </div>,
