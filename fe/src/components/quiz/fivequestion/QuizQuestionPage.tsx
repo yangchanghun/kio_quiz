@@ -7,10 +7,12 @@ import { AnswerModal } from "@/components/common/AnswerModal";
 import { quizSet } from "@/data/testData";
 import { usePageTransition } from "@/hooks/usePageTransition";
 import { pageTransitionClass } from "@/utils/pageTransitionClass";
+import { QuizResultPage } from "./QuizQuestionResultPage";
 type QuizPageProps = {
   handleHomeClick: () => void;
 };
 export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
+  const [showResult, setShowResult] = useState(false);
   // const choicesList = [["1",2"],["3"],["1"]]; 이런식으로 사용자가 선택한 뭐시기
   // 그리고 사용자가 답 고르고 해설 바로보기 터글 선택했으면
   // 바로바로 questions[currentIndex]의 answers 리스트와
@@ -52,17 +54,33 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
     console.log(qId, "번 체크한 답", "", userAnswers);
   };
 
+  const goNext = () => {
+    if (currentIndex === total - 1) {
+      setShowResult(true);
+      return;
+    }
+    setCurrentIndex((prev) => prev + 1);
+  };
+
   const handleNextQuestion = () => {
     if (answerPreview) {
       setAnswerModal(true);
-    } else {
-      setCurrentIndex((prev) => Math.min(10, prev + 1));
+      return;
     }
+    goNext();
   };
-
   const isQuestionCorrect =
     selectedIds.length === currentQuestion.answers.length &&
     selectedIds.every((id) => currentQuestion.answers.includes(id));
+
+  if (showResult) {
+    return (
+      <QuizResultPage
+        userAnswers={userAnswers}
+        handleHomeClick={handleHomeClick}
+      />
+    );
+  }
 
   return (
     <div
@@ -227,9 +245,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
           isCorrect={isQuestionCorrect}
           explanation={currentQuestion.description}
           setAnswerModal={setAnswerModal}
-          handleNextQuestion={() =>
-            setCurrentIndex((prev) => Math.min(10, prev + 1))
-          }
+          handleNextQuestion={goNext}
         />
       )}
     </div>

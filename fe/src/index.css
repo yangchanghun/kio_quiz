@@ -1,14 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html,
+/* html,
 body,
 #root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-}
+} */
 
 body {
   font-family: Pretendard, sans-serif;
@@ -30,4 +30,14 @@ button {
 button:focus,
 button:focus-visible {
   outline: none;
+}
+
+/* 스크롤바 완전 숨기기 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
 }

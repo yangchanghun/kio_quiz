@@ -67,28 +67,30 @@ export default function MainPage() {
           flex
         "
       >
-        {status === "home" && (
-          <HomeComponent
-            handleLoginClick={handleLoginClick}
-            handleDemoClick={handleDemoClick}
-          />
-        )}
-        {status === "login" && (
-          <LoginComponent
-            // handleLoginClick={handleLoginClick}
-            handleHomeClick={handleHomeClick}
-          />
-        )}
-        {status === "demo" && (
-          <DemoPage
-            handleHomeClick={handleHomeClick}
-            handleTestQuizClick={handleTestQuizClick}
-          />
-        )}
+        <div className="flex-1 flex flex-col  overflow-y-auto">
+          {status === "home" && (
+            <HomeComponent
+              handleLoginClick={handleLoginClick}
+              handleDemoClick={handleDemoClick}
+            />
+          )}
+          {status === "login" && (
+            <LoginComponent
+              // handleLoginClick={handleLoginClick}
+              handleHomeClick={handleHomeClick}
+            />
+          )}
+          {status === "demo" && (
+            <DemoPage
+              handleHomeClick={handleHomeClick}
+              handleTestQuizClick={handleTestQuizClick}
+            />
+          )}
 
-        {status === "quiz" && (
-          <QuizQuestionPage handleHomeClick={handleHomeClick} />
-        )}
+          {status === "quiz" && (
+            <QuizQuestionPage handleHomeClick={handleHomeClick} />
+          )}
+        </div>
       </div>
     </div>
   );
