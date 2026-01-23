@@ -15,9 +15,9 @@
     "noEmit": true,
 
     /* ⭐⭐⭐ 이거 추가 ⭐⭐⭐ */
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["*"]
     },
 
     /* Linting */
