@@ -25,15 +25,17 @@ services:
     networks:
       - kioedu_network # ✅ 여기가 핵심 수정
 
-  db:
-    image: postgres:16
-    container_name: kioquiz_db
-    env_file:
-      - ./be/.env
-    volumes:
-      - pgdata_user:/var/lib/postgresql/data
-    networks:
-      - kioedu_network
+db:
+  image: postgres:16
+  container_name: kioquiz_db
+  env_file:
+    - ./be/.env
+  volumes:
+    - pgdata_user:/var/lib/postgresql/data
+  ports:
+    - "5436:5432" # ✅ 이 줄 추가
+  networks:
+    - kioedu_network
 
 volumes:
   media_volume:
