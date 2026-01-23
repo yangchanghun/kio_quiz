@@ -5,52 +5,54 @@ services:
     build: ./be
     container_name: kioquiz_backend
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - static:/app/static
-      - media:/app/media
     env_file:
       - ./be/.env
+    expose:
+      - "8000"
     depends_on:
-      - db
+      - db_user
+    volumes:
+      - media_volume:/app/media
+      - static_volume:/app/staticfiles
     networks:
-      - kioquiz
-
-  frontend:
-    build: ./fe
-    container_name: kioquiz_frontend
-    networks:
-      - kioquiz
+      - kioedu_network
 
   nginx:
     image: nginx:stable-alpine
     container_name: kioquiz_nginx
+    ports:
+      - "8100:80"
+      - "8443:443"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - static:/static
-      - media:/media
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./fe/dist:/usr/share/nginx/html # 🔥 핵심
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
     depends_on:
       - backend
-      - frontend
     networks:
-      - kioquiz
-      - proxy # ← 나중에 NPM이랑 연결용
+      - kioedu_network
 
-  db:
+  db_user:
     image: postgres:16
     container_name: kioquiz_db
-    env_file:
-      - ./be/.env
+    restart: always
+    environment:
+      POSTGRES_DB: kioquiz
+      POSTGRES_USER: kioquiz
+      POSTGRES_PASSWORD: 1234
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - pgdata_user:/var/lib/postgresql/data
+    ports:
+      - "5440:5432"
     networks:
-      - kioquiz
-
-volumes:
-  postgres:
-  static:
-  media:
+      - kioedu_network
 
 networks:
-  kioquiz:
-  proxy:
+  kioedu_network:
     external: true
+
+volumes:
+  static_volume:
+  media_volume:
+  pgdata_user:
