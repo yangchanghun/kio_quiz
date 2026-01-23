@@ -19,9 +19,7 @@ import os
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-CSRF_TRUSTED_ORIGINS = [
-    "https://kioquiz.kioedu.co.kr",
-]
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-f)#@9-ez+&fflldt%pg*w10=h52)*nh*=#%xve+f@$n%37y@%k'
 
@@ -33,14 +31,18 @@ USE_X_FORWARDED_HOST = True
 
 # 🔥 NPM이 이미 HTTPS 처리하므로 Django는 redirect 하지 말 것
 SECURE_SSL_REDIRECT = False
-ALLOWED_HOSTS = [
-    "kioquiz.kioedu.co.kr",
-]
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
     "https://kioquiz.kioedu.co.kr"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://kioquiz.kioedu.co.kr",
+    "http://kioquiz.kioedu.co.kr",
+]
+
 
 # Application definition
 
