@@ -11,7 +11,7 @@ services:
       - media_volume:/app/media
       - static_volume:/app/staticfiles
     depends_on:
-      - db_user
+      - db
     networks:
       - kioedu_network
 
@@ -30,7 +30,7 @@ services:
       - kioedu_network
       - proxy
 
-  db_user:
+  db:
     image: postgres:16
     container_name: kioquiz_db
     env_file:
@@ -41,14 +41,3 @@ services:
       - "5440:5432"
     networks:
       - kioedu_network
-
-volumes:
-  media_volume:
-  static_volume:
-  pgdata_user:
-
-networks:
-  kioedu_network:
-    external: true
-  proxy:
-    external: true
