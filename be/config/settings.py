@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-f)#@9-ez+&fflldt%pg*w10=h52)*nh*=#%xve+f@$n%37y@%k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") == "True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "kioquiz.kioedu.co.kr",
+    "kioquiz_nginx",
+    "kioquiz_backend",
+    "localhost",
+]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
