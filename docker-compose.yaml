@@ -5,15 +5,13 @@ services:
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     env_file:
       - ./be/.env
-    expose:
-      - "8000"
     volumes:
       - media_volume:/app/media
       - static_volume:/app/staticfiles
     depends_on:
       - db
     networks:
-      - kioedu_network
+      - kioquiz_network
 
   nginx:
     build: ./fe
@@ -27,8 +25,7 @@ services:
     depends_on:
       - backend
     networks:
-      - kioedu_network
-      - proxy
+      - kioquiz_network
 
   db:
     image: postgres:16
@@ -37,10 +34,8 @@ services:
       - ./be/.env
     volumes:
       - pgdata_user:/var/lib/postgresql/data
-    ports:
-      - "5440:5432"
     networks:
-      - kioedu_network
+      - kioquiz_network
 
 volumes:
   media_volume:
@@ -48,7 +43,16 @@ volumes:
   pgdata_user:
 
 networks:
-  kioedu_network:
-    external: true
-  proxy:
-    external: true
+  kioquiz_network:
+    driver: bridge
+
+# volumes:
+#   media_volume:
+#   static_volume:
+#   pgdata_user:
+
+# networks:
+#   kioedu_network:
+#     external: true
+#   proxy:
+#     external: true
