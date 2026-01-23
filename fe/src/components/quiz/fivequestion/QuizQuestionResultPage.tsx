@@ -1,9 +1,8 @@
 import { quizSet } from "@/data/testData";
-import type { QuestionsType } from "@/types/QuesionsType";
 
 type ResultPageProps = {
   userAnswers: Record<number, number[]>;
-  handleHomeClick: () => void;
+  handleHomeClick?: () => void;
 };
 
 export const QuizResultPage = ({
@@ -28,6 +27,7 @@ export const QuizResultPage = ({
   const correctCount = results.filter((r) => r.isCorrect).length;
 
   return (
+            <div className="flex-1 flex flex-col  overflow-y-auto">
     <div className="flex-1 px-6 py-8 text-white">
       {/* 타이틀 */}
       <h1 className="text-2xl font-bold text-center mb-6">퀴즈 결과</h1>
@@ -65,10 +65,10 @@ export const QuizResultPage = ({
             <p className="font-semibold mb-3">{q.question}</p>
 
             {/* 이미지 */}
-            {q.img && (
+            {q.image && (
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src={q.img}
+                  src={q.image}
                   alt=""
                   className="w-full h-auto object-cover"
                 />
@@ -138,6 +138,7 @@ export const QuizResultPage = ({
           다시 풀기
         </button>
       </div>
+    </div>
     </div>
   );
 };

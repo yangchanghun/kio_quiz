@@ -123,10 +123,10 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
       <div className="w-full bg-white text-black rounded-xl px-4 py-5 mb-6 shadow-md text-center font-semibold">
         {currentQuestion.question}
       </div>
-      {currentQuestion.img && (
+      {currentQuestion.image && (
         <div className="w-full mb-6 rounded-xl overflow-hidden shadow-lg">
           <img
-            src={currentQuestion.img}
+            src={currentQuestion.image}
             className="w-full h-full object-cover"
           />
         </div>
@@ -154,17 +154,17 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
               `}
             >
               {/* 이미지 */}
-              {choice.img && (
+              {choice.image && (
                 <div className="h-28 bg-gray-200">
                   <img
-                    src={choice.img}
+                    src={choice.image}
                     className="w-full h-full object-cover"
                   />
                 </div>
               )}
 
               {/* 텍스트 */}
-              {choice.img ? (
+              {choice.image ? (
                 <div
                   className={`py-3 font-semibold text-center rounded-b-xl ${
                     isSelected

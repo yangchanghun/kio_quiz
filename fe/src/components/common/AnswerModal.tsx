@@ -55,7 +55,9 @@ export const AnswerModal = ({
         <div
           style={{
             background: "#f1f1f1",
-            borderRadius: 12,
+            color:"#333",
+            fontSize: 16,
+            fontWeight:"800",            borderRadius: 12,
             padding: 16,
             marginBottom: 20,
             whiteSpace: "pre-line",

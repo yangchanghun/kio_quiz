@@ -39,12 +39,12 @@
 // };
 
 import type { ChoicesType } from "@/types/ChoicesType";
-import type { QuestionsType } from "@/types/QuesionsType";
+import type { QuestionsType, QuestionType } from "@/types/QuesionsType";
 
 export const choices1: ChoicesType[] = [
-  { id: 1, label: "바퀴벌레", img: "tomato.png" },
+  { id: 1, label: "바퀴벌레", image: "tomato.png" },
   { id: 2, label: "토마토" },
-  { id: 3, label: "브로콜리", img: "tomato.png" },
+  { id: 3, label: "브로콜리", image: "tomato.png" },
   { id: 4, label: "양상추" },
 ];
 export const choices2: ChoicesType[] = [
@@ -91,11 +91,13 @@ export const questions: QuestionsType[] = [
 설명: 로마 신화의 사랑과 미의 여신 비너스가 조개껍데기 위에 서서 바다에서 태어나는 순간을 묘사한 작품입니다.
 `,
     choices: choices3,
-    img: "venus.png",
+    image: "venus.png",
   },
 ];
 
-export const quizSet = {
-  title: "상식 퀴즈",
-  questions,
+export const quizSet: QuestionType = {
+  type:"multiple",
+  title: "채소맞추기 퀴즈",
+  questions: questions,
+  img: "sumnail.png",
 };
