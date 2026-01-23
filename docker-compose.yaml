@@ -16,7 +16,7 @@ services:
       - kioedu_network
 
   nginx:
-    build: ./fe # ⭐ 여기서 프론트도 같이 빌드됨
+    build: ./fe
     container_name: kioquiz_nginx
     ports:
       - "8100:80"
@@ -41,3 +41,14 @@ services:
       - "5440:5432"
     networks:
       - kioedu_network
+
+volumes:
+  media_volume:
+  static_volume:
+  pgdata_user:
+
+networks:
+  kioedu_network:
+    external: true
+  proxy:
+    external: true
