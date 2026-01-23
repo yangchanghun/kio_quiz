@@ -24,7 +24,7 @@ import os
 SECRET_KEY = 'django-insecure-f)#@9-ez+&fflldt%pg*w10=h52)*nh*=#%xve+f@$n%37y@%k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG") == "True"
+DEBUG = True
 # 🔥 reverse proxy (nginx / NPM) 뒤에서 HTTPS 인식
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
