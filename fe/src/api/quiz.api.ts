@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = "https://kioquiz.kioedu.co.kr/api";
+// const BASE_URL = "http://localhost:8000/api";
 
 export const fetchQuizList = async () => {
   const token = localStorage.getItem("access");
