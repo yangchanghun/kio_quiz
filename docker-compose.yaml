@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     networks:
-      - kioquiz_network
+      - kioquiz_internal
 
   nginx:
     build: ./fe
@@ -24,9 +24,9 @@ services:
       - backend
     networks:
       kioquiz_internal:
-      proxy:
+      proxy: # ⭐ nginx-proxy-manager 네트워크
         aliases:
-          - kioquiz_nginx # ⭐ 이 줄이 핵심
+          - kioquiz_nginx
 
   db:
     image: postgres:16
@@ -36,7 +36,7 @@ services:
     volumes:
       - pgdata_user:/var/lib/postgresql/data
     networks:
-      - kioquiz_network
+      - kioquiz_internal
 
 volumes:
   media_volume:
@@ -44,8 +44,11 @@ volumes:
   pgdata_user:
 
 networks:
-  kioquiz_network:
+  kioquiz_internal:
     driver: bridge
+  proxy:
+    external: true # ⭐ 이미 존재하는 nginx-proxy-manager 네트워크
+
 
 # volumes:
 #   media_volume:
