@@ -19,7 +19,9 @@ import os
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://kioquiz.kioedu.co.kr",
+]
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-f)#@9-ez+&fflldt%pg*w10=h52)*nh*=#%xve+f@$n%37y@%k'
 
