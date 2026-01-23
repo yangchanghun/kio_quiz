@@ -41,3 +41,14 @@ services:
       - "5440:5432"
     networks:
       - kioedu_network
+
+volumes:
+  media_volume:
+  static_volume:
+  pgdata_user:
+
+networks:
+  kioedu_network:
+    external: true
+  proxy:
+    external: true
