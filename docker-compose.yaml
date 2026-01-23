@@ -2,21 +2,21 @@ version: "3.9"
 
 services:
   backend:
-    build: ./backend
+    build: ./be
     container_name: kioquiz_backend
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static:/app/static
       - media:/app/media
     env_file:
-      - .env
+      - ./be/.env
     depends_on:
       - db
     networks:
       - kioquiz
 
   frontend:
-    build: ./frontend
+    build: ./fe
     container_name: kioquiz_frontend
     networks:
       - kioquiz
