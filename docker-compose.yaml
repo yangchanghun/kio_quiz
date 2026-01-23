@@ -22,7 +22,8 @@ services:
       - static_volume:/app/staticfiles
     depends_on:
       - backend
-    networks: -kioedu_network
+    networks:
+      - kioedu_network # ✅ 여기가 핵심 수정
 
   db:
     image: postgres:16
