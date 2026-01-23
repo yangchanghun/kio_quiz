@@ -33,9 +33,6 @@ USE_X_FORWARDED_HOST = True
 SECURE_SSL_REDIRECT = False
 ALLOWED_HOSTS = [
     "kioquiz.kioedu.co.kr",
-    "kioquiz_nginx",
-    "kioquiz_backend",
-    "localhost",
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
