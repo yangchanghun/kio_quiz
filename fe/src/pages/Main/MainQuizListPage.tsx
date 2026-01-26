@@ -97,20 +97,35 @@ export const MainQuizListPage = () => {
                 key={quiz.id}
                 onClick={() => navigate(quiz.domain)}
                 className="
-                  h-[140px]
-                  bg-white
-                  rounded-2xl
-                  shadow-lg
-                  flex
-                  flex-col
-                  items-center
-                  justify-between
-                  p-3
-                  active:scale-95
-                  transition-transform
-                "
+          w-[130px]
+          h-[140px]
+          bg-white
+          rounded-2xl
+          shadow-lg
+          flex
+          flex-col
+          items-center
+          justify-between
+          p-3
+          active:scale-95
+          transition-transform
+          mb-4
+          mr-4"
               >
-                <div className="w-full h-[100px] rounded-xl overflow-hidden">
+                <div
+                  className="                             
+                  w-full
+                h-[100px]
+                bg-gray-200
+                rounded-xl
+                flex
+                items-center
+                justify-center
+                text-gray-500
+                text-sm
+                font-semibold
+                overflow-hidden"
+                >
                   <img
                     src={quiz.thumbnail}
                     alt={quiz.title}
