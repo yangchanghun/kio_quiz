@@ -120,9 +120,9 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    "accounts.backends.PhoneBackend",
+    "django.contrib.auth.backends.ModelBackend",  # 🔥 admin 필수
+    "accounts.backends.PhoneBackend",              # 🔥 phone 로그인
 ]
-
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),   # 짧게
     "REFRESH_TOKEN_LIFETIME": timedelta(days=3),   # 핵심
