@@ -25,9 +25,38 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
     
-from django.contrib.auth import authenticate
-from rest_framework_simplejwt.tokens import RefreshToken
+# from django.contrib.auth import authenticate
+# from rest_framework_simplejwt.tokens import RefreshToken
 
+
+# class LoginSerializer(serializers.Serializer):
+#     phone = serializers.CharField()
+#     password = serializers.CharField()
+
+#     def validate(self, data):
+#         user = authenticate(
+#             phone=data["phone"],
+#             password=data["password"],
+#         )
+
+#         if not user:
+#             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
+
+#         refresh = RefreshToken.for_user(user)
+
+#         return {
+#             "token": str(refresh.access_token),
+#             "user": {
+#                 "id": user.id,
+#                 "phone": user.phone,
+#                 "name": user.name,
+#                 "company": user.company,
+#             },
+#         }
+
+
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 
 class LoginSerializer(serializers.Serializer):
     phone = serializers.CharField()
@@ -35,17 +64,17 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         user = authenticate(
-            phone=data["phone"],
-            password=data["password"],
+            phone=data["phone"].strip(),
+            password=data["password"].strip(),
         )
 
         if not user:
             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
 
-        refresh = RefreshToken.for_user(user)
+        token, _ = Token.objects.get_or_create(user=user)
 
         return {
-            "token": str(refresh.access_token),
+            "token": token.key,
             "user": {
                 "id": user.id,
                 "phone": user.phone,
@@ -53,4 +82,3 @@ class LoginSerializer(serializers.Serializer):
                 "company": user.company,
             },
         }
-

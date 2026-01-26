@@ -116,7 +116,9 @@ REST_FRAMEWORK = {
     ),
 }
 
-
+AUTHENTICATION_BACKENDS = [
+    "accounts.backends.PhoneBackend",
+]
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),   # 짧게
