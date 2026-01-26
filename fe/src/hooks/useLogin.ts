@@ -7,8 +7,7 @@ export function useLogin() {
     mutationFn: loginApi,
     onSuccess: (data) => {
       // 🔐 토큰 저장 (일단 localStorage)
-      localStorage.setItem("access", data.access);
-      localStorage.setItem("refresh", data.refresh);
+      localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
     },
   });

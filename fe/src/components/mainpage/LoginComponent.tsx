@@ -26,8 +26,7 @@ export const LoginComponent = ({ handleHomeClick }: LoginComponentProps) => {
     onSuccess: (data) => {
       loginStore({
         user: data.user,
-        access: data.access,
-        refresh: data.refresh,
+        token: data.token,
       });
       leave(() => navigate("/quizlist"));
     },

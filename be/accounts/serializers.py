@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+from rest_framework.authtoken.models import Token
 
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
@@ -47,11 +48,10 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
 
-        refresh = RefreshToken.for_user(user)
-
+        # refresh = RefreshToken.for_user(user)
+        token, created = Token.objects.get_or_create(user=user)
         return {
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
+            "token": token.key,
             "user": {
                 "id": user.id,
                 "phone": user.phone,

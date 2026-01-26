@@ -13,8 +13,7 @@ export interface LoginPayload {
 }
 
 export interface LoginResponse {
-  access: string;
-  refresh: string;
+  token: string;
   user: {
     id: number;
     phone: string;

@@ -4,7 +4,7 @@ const BASE_URL = "https://kioquiz.kioedu.co.kr/api";
 // const BASE_URL = "http://localhost:8000/api";
 
 export const fetchQuizList = async () => {
-  const token = localStorage.getItem("access");
+  const token = localStorage.getItem("token");
 
   const res = await axios.get(`${BASE_URL}/quizzes/`, {
     headers: {
@@ -16,7 +16,7 @@ export const fetchQuizList = async () => {
 };
 
 export const fetchQuizDetail = async (quizId: number) => {
-  const token = localStorage.getItem("access");
+  const token = localStorage.getItem("token");
 
   const res = await axios.get(`${BASE_URL}/quizzes/${quizId}/`, {
     headers: {
@@ -28,7 +28,7 @@ export const fetchQuizDetail = async (quizId: number) => {
 };
 
 export const createQuizApi = async (formData: FormData) => {
-  const token = localStorage.getItem("access");
+  const token = localStorage.getItem("token");
   console.log(token);
   const res = await axios.post(`${BASE_URL}/quizzes/create/`, formData, {
     headers: {
@@ -41,7 +41,7 @@ export const createQuizApi = async (formData: FormData) => {
 };
 
 export const updateQuizApi = async (quizId: number, formData: FormData) => {
-  const token = localStorage.getItem("access");
+  const token = localStorage.getItem("token");
 
   const res = await axios.put(
     `${BASE_URL}/quizzes/${quizId}/update/`,

@@ -9,15 +9,10 @@ type User = {
 
 type AuthState = {
   user: User | null;
-  accessToken: string | null;
-  refreshToken: string | null;
+  token: string | null;
   initialized: boolean; // ⭐ 추가
 
-  login: (data: {
-    user: User;
-    access: string;
-    refresh: string;
-  }) => void;
+  login: (data: { user: User; token: string }) => void;
 
   logout: () => void;
   initialize: () => void;
@@ -25,19 +20,17 @@ type AuthState = {
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  accessToken: null,
-  refreshToken: null,
+  token: null,
   initialized: false, // ⭐ 기본 false
 
-  login: ({ user, access, refresh }) => {
-    localStorage.setItem("access", access);
+  login: ({ user, token, refresh }) => {
+    localStorage.setItem("token", token);
     localStorage.setItem("refresh", refresh);
     localStorage.setItem("user", JSON.stringify(user));
 
     set({
       user,
-      accessToken: access,
-      refreshToken: refresh,
+      token: token,
       initialized: true,
     });
   },
@@ -46,22 +39,20 @@ export const useAuthStore = create<AuthState>((set) => ({
     localStorage.clear();
     set({
       user: null,
-      accessToken: null,
-      refreshToken: null,
+      token: null,
       initialized: true,
     });
   },
 
   initialize: () => {
-    const access = localStorage.getItem("access");
+    const token = localStorage.getItem("token");
     const refresh = localStorage.getItem("refresh");
     const user = localStorage.getItem("user");
 
-    if (access && refresh && user) {
+    if (token && refresh && user) {
       set({
         user: JSON.parse(user),
-        accessToken: access,
-        refreshToken: refresh,
+        token: token,
         initialized: true,
       });
     } else {
