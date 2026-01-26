@@ -6,6 +6,10 @@ services:
     container_name: kioquiz_backend
     env_file:
       - ./be/.env
+    command: >
+      gunicorn config.wsgi:application
+      --bind 0.0.0.0:8000
+      --workers 1
     expose:
       - "8000"
     depends_on:
