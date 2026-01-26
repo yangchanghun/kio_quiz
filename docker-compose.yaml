@@ -23,9 +23,9 @@ services:
     container_name: nginx_frontdend
     volumes:
       - ./fe/dist:/app/dist
-    # ❗ command 제거 (Dockerfile CMD 사용)
     networks:
       - kioedu_network
+    restart: "no" # ⭐ 빌드용이라 재시작 필요 없음
 
   nginx:
     image: nginx:stable-alpine
@@ -66,14 +66,3 @@ volumes:
 networks:
   kioedu_network:
     external: true
-
-# volumes:
-#   media_volume:
-#   static_volume:
-#   pgdata_user:
-
-# networks:
-#   kioedu_network:
-#     external: true
-#   proxy:
-#     external: true
