@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import User  # 네 커스텀 유저 모델
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import User
 
-admin.site.register(User)
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    pass
