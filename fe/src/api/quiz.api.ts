@@ -8,7 +8,7 @@ export const fetchQuizList = async () => {
 
   const res = await axios.get(`${BASE_URL}/quizzes/`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Token ${token}`,
     },
   });
   // console.log(res.data)
@@ -20,7 +20,7 @@ export const fetchQuizDetail = async (quizId: number) => {
 
   const res = await axios.get(`${BASE_URL}/quizzes/${quizId}/`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Token ${token}`,
     },
   });
 
@@ -32,7 +32,7 @@ export const createQuizApi = async (formData: FormData) => {
   console.log(token);
   const res = await axios.post(`${BASE_URL}/quizzes/create/`, formData, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Token ${token}`,
       // ⚠️ multipart일 때는 Content-Type 직접 지정 ❌
     },
   });
@@ -48,7 +48,7 @@ export const updateQuizApi = async (quizId: number, formData: FormData) => {
     formData,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
         // ⚠️ multipart/form-data는 직접 Content-Type 지정 ❌
       },
     },
