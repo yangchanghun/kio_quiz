@@ -20,7 +20,7 @@ services:
     build:
       context: ./fe
       dockerfile: Dockerfile
-    container_name: pushapp_frontend
+    container_name: nginx_frontdend
     volumes:
       - ./fe/dist:/fe/dist # ⭐ dist가 host로 복사됨
     command: ["npm", "run", "build"]
