@@ -20,17 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # 관리자
     path("api/admin/", admin.site.urls),
-
-    # 앱별 URL
     path("api/accounts/", include("accounts.urls")),
     path("api/quizzes/", include("quizzes.urls")),
 ]
 
-# 개발 환경에서 media 파일 서빙
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

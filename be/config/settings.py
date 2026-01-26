@@ -93,15 +93,14 @@ AUTH_USER_MODEL = "accounts.User"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME", "kioedu"),
-        'USER': os.getenv("DB_USER", "rheavision"),
-        'PASSWORD': os.getenv("DB_PASSWORD", "16444907"),
-        'HOST': os.getenv("DB_HOST", "kioquiz_db"),
-        'PORT': os.getenv("DB_PORT", "5432"),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "kioedu",
+        "USER": "rheavision",
+        "PASSWORD": "16444907",
+        "HOST": "kioquiz_db",
+        "PORT": "5432",
     }
 }
 # DATABASES = {
