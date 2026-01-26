@@ -95,13 +95,13 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": os.getenv("POSTGRES_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME", "kioedu"),
+        'USER': os.getenv("DB_USER", "rheavision"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "16444907"),
+        'HOST': os.getenv("DB_HOST", "kioquiz_db"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
 # DATABASES = {

@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import User
 
-
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
@@ -11,8 +10,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ("phone", "name", "company", "password1", "password2")
 
     def validate(self, data):
+        # ✅ 비밀번호 일치 체크
         if data["password1"] != data["password2"]:
             raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")
+
+        # ✅ 길이 체크 (4자리 이상)
+        if len(data["password1"]) < 4:
+            raise serializers.ValidationError("비밀번호는 4자리 이상이어야 합니다.")
+
         return data
 
     def create(self, validated_data):
