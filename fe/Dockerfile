@@ -1,13 +1,9 @@
-# 1단계: build
-FROM node:18-alpine AS build
+FROM node:18-alpine
+
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
-
-# 2단계: nginx
-FROM nginx:stable-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+CMD ["npm", "run", "build"]
