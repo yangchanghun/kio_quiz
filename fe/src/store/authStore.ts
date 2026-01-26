@@ -23,9 +23,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   token: null,
   initialized: false, // ⭐ 기본 false
 
-  login: ({ user, token, refresh }) => {
+  login: ({ user, token }) => {
     localStorage.setItem("token", token);
-    localStorage.setItem("refresh", refresh);
     localStorage.setItem("user", JSON.stringify(user));
 
     set({
@@ -46,10 +45,9 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   initialize: () => {
     const token = localStorage.getItem("token");
-    const refresh = localStorage.getItem("refresh");
     const user = localStorage.getItem("user");
 
-    if (token && refresh && user) {
+    if (token && user) {
       set({
         user: JSON.parse(user),
         token: token,
