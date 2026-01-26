@@ -61,13 +61,20 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
     def validate(self, data):
-        try:
-            user = User.objects.get(phone=data["phone"])
-        except User.DoesNotExist:
-            raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
+        phone = data["phone"]
+
+        if not User.objects.filter(phone=phone).exists():
+            raise serializers.ValidationError({
+                "debug_phone": repr(phone),
+                "db_phones": list(User.objects.values_list("phone", flat=True)),
+            })
+
+        user = User.objects.get(phone=phone)
 
         if not user.check_password(data["password"]):
-            raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
+            raise serializers.ValidationError({
+                "debug_password": "password mismatch",
+            })
 
         token, _ = Token.objects.get_or_create(user=user)
 

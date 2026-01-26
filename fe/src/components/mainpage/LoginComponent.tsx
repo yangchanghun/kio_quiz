@@ -5,6 +5,7 @@ import { usePageTransition } from "../../hooks/usePageTransition";
 import { pageTransitionClass } from "../../utils/pageTransitionClass";
 import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
+import type { AxiosError } from "axios";
 type LoginComponentProps = {
   handleHomeClick: () => void;
 };
@@ -30,8 +31,9 @@ export const LoginComponent = ({ handleHomeClick }: LoginComponentProps) => {
       });
       leave(() => navigate("/quizlist"));
     },
-    onError: () => {
-      alert("아이디 또는 비밀번호가 틀렸습니다.");
+    onError: (err: AxiosError) => {
+      console.error("LOGIN ERROR:", err.response?.data);
+      alert("로그인 실패 (콘솔 확인)");
     },
   });
 
