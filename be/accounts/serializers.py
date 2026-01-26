@@ -35,21 +35,46 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+# class LoginSerializer(serializers.Serializer):
+#     phone = serializers.CharField()
+#     password = serializers.CharField()
+
+#     def validate(self, data):
+#         user = authenticate(
+#             phone=data["phone"],
+#             password=data["password"],
+#         )
+
+#         if not user:
+#             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
+
+#         # refresh = RefreshToken.for_user(user)
+#         token, created = Token.objects.get_or_create(user=user)
+#         return {
+#             "token": token.key,
+#             "user": {
+#                 "id": user.id,
+#                 "phone": user.phone,
+#                 "name": user.name,
+#                 "company": user.company,
+#             },
+#         }
+
 class LoginSerializer(serializers.Serializer):
     phone = serializers.CharField()
     password = serializers.CharField()
 
     def validate(self, data):
-        user = authenticate(
-            phone=data["phone"],
-            password=data["password"],
-        )
-
-        if not user:
+        try:
+            user = User.objects.get(phone=data["phone"])
+        except User.DoesNotExist:
             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
 
-        # refresh = RefreshToken.for_user(user)
-        token, created = Token.objects.get_or_create(user=user)
+        if not user.check_password(data["password"]):
+            raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
+
+        token, _ = Token.objects.get_or_create(user=user)
+
         return {
             "token": token.key,
             "user": {
@@ -59,4 +84,3 @@ class LoginSerializer(serializers.Serializer):
                 "company": user.company,
             },
         }
-
