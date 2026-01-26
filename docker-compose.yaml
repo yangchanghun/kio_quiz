@@ -29,6 +29,7 @@ services:
       - backend
     networks:
       - kioquiz_network
+      - kioedu_network # ⭐ NPM 네트워크
 
   db:
     image: postgres:16
@@ -49,3 +50,6 @@ volumes:
 networks:
   kioquiz_network:
     driver: bridge
+
+  kioedu_network:
+    external: true
