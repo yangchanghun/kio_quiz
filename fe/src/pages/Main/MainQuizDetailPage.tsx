@@ -130,10 +130,7 @@ export const MainQuizDetailPage = () => {
       {/* 질문 이미지 */}
       {currentQuestion.image && (
         <div className="w-full mb-6 rounded-xl overflow-hidden shadow-lg">
-          <img
-            src={currentQuestion.image}
-            className="w-full h-full object-cover"
-          />
+          <img src={currentQuestion.image} className="w-full h-full" />
         </div>
       )}
 

@@ -156,10 +156,7 @@ export const QuizQuestionPage = ({ handleHomeClick }: QuizPageProps) => {
               {/* 이미지 */}
               {choice.image && (
                 <div className="h-28 bg-gray-200">
-                  <img
-                    src={choice.image}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={choice.image} className="w-full h-full" />
                 </div>
               )}
 
