@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile
     container_name: nginx_frontdend
     volumes:
-      - ./fe/dist:/fe/dist # ⭐ dist가 host로 복사됨
+      - ./fe/dist:/app/dist # ⭐ dist가 host로 복사됨
     command: ["npm", "run", "build"]
     networks:
       - kioedu_network
