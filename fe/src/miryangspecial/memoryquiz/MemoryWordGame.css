@@ -1,0 +1,105 @@
+.memoryword-container {
+  max-width: 720px;
+  min-height: 800px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.memoryword-title {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.memoryword-hint {
+  font-size: 25px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.memoryword-word {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 30px 0;
+  animation: memoryword-fadeIn 0.3s ease-in-out;
+}
+
+@keyframes memoryword-fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.memoryword-question {
+  font-size: 30px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.memoryword-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.memoryword-option {
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.memoryword-option:hover {
+  background: #eee;
+}
+
+.memoryword-selected {
+  background: #4f46e5;
+  color: #fff;
+  border-color: #4f46e5;
+}
+
+.memoryword-result {
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.memoryword-start {
+  text-align: center;
+}
+
+.memoryword-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.memoryword-desc-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.memoryword-desc-list li {
+  margin-bottom: 6px;
+}
+
+.memoryword-start-btn {
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #4f46e5;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}

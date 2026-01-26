@@ -10,12 +10,18 @@ type Quiz = {
   thumbnail: string;
 };
 
+type MiryangQuiz = {
+  id: number;
+  title: string;
+  thumbnail: string;
+  domain: string;
+};
+
 export const MainQuizListPage = () => {
   const { phase, leave } = usePageTransition(300);
   const logout = useAuthStore((state) => state.logout);
   const user = useAuthStore((state) => state.user);
   const navigate = useNavigate();
-
   // 🔥 React Query 데이터
   const { data: quizList, isLoading, isError } = useQuizList();
 
@@ -28,6 +34,15 @@ export const MainQuizListPage = () => {
     // console.log("선택한 퀴즈:", quizId);
     navigate(`/quiz/${quizId}`);
   };
+
+  const miryangQuizList: MiryangQuiz[] = [
+    {
+      id: 123,
+      title: "기억력테스트",
+      thumbnail: "/miryang/memory.png",
+      domain: "/miryang/memorytest",
+    },
+  ];
 
   return (
     <div className="flex-1 flex flex-col overflow-y-auto">
@@ -76,6 +91,38 @@ export const MainQuizListPage = () => {
             gap-4
           "
         >
+          {user?.name === "밀양시청" &&
+            miryangQuizList.map((quiz) => (
+              <button
+                key={quiz.id}
+                onClick={() => navigate(quiz.domain)}
+                className="
+                  h-[140px]
+                  bg-white
+                  rounded-2xl
+                  shadow-lg
+                  flex
+                  flex-col
+                  items-center
+                  justify-between
+                  p-3
+                  active:scale-95
+                  transition-transform
+                "
+              >
+                <div className="w-full h-[100px] rounded-xl overflow-hidden">
+                  <img
+                    src={quiz.thumbnail}
+                    alt={quiz.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <span className="text-sm font-semibold text-black text-center">
+                  {quiz.title}
+                </span>
+              </button>
+            ))}
           {quizList?.map((quiz: Quiz) => (
             <button
               key={quiz.id}

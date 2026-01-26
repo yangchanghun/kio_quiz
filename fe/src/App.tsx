@@ -8,6 +8,7 @@ import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { Background } from "./background/Background";
 import { MainQuizDetailPage } from "./pages/Main/MainQuizDetailPage";
 import AdminQuizUpdator from "./pages/AdminQuizUpdator";
+import MemoryWordGame from "./miryangspecial/memoryquiz/MemoryWordGame";
 
 function App() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -70,6 +71,14 @@ function App() {
         element={
           <ProtectedRoute>
             <AdminQuizUpdator />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/miryang/memorytest"
+        element={
+          <ProtectedRoute>
+            <MemoryWordGame />
           </ProtectedRoute>
         }
       />
