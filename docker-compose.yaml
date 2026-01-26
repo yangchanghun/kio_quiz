@@ -16,6 +16,17 @@ services:
       - static_volume:/app/staticfiles
     networks:
       - kioedu_network
+  frontend:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    container_name: pushapp_frontend
+    volumes:
+      - ./fe/dist:/fe/dist # ⭐ dist가 host로 복사됨
+    command: ["npm", "run", "build"]
+    networks:
+      - kioedu_network
+
   nginx:
     image: nginx:stable-alpine
     container_name: kioquiz_nginx
