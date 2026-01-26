@@ -38,15 +38,39 @@ export const MainQuizListPage = () => {
   const miryangQuizList: MiryangQuiz[] = [
     {
       id: 123,
+      title: "치매안내",
+      thumbnail: "/miryang/olderguide.jpeg",
+      domain: "/miryang/older/guide",
+    },
+    {
+      id: 123,
       title: "치매 선별 설문지",
-      thumbnail: "/miryang/memory.png",
+      thumbnail: "/miryang/alz.png",
       domain: "/miryang/alzhemier",
     },
     {
       id: 123,
       title: "인지교육",
-      thumbnail: "/miryang/memory.png",
+      thumbnail: "/miryang/cog.png",
       domain: "/miryang/cognitive",
+    },
+    {
+      id: 123,
+      title: "우울증진단테스트",
+      thumbnail: "/miryang/depression.png",
+      domain: "/miryang/depression",
+    },
+    {
+      id: 123,
+      title: "스트레스진단테스트",
+      thumbnail: "/miryang/stress.png",
+      domain: "/miryang/stress",
+    },
+    {
+      id: 123,
+      title: "수면진단테스트",
+      thumbnail: "/miryang/sleep.png",
+      domain: "/miryang/sleep",
     },
     {
       id: 123,

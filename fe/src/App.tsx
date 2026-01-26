@@ -1,20 +1,18 @@
+// src/routes/AppRoutes.tsx
 import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
-import { useAuthStore } from "./store/authStore";
-import MainPage from "./pages/MainPage";
-import AdminPage from "./pages/AdminPage";
-import { MainQuizListPage } from "./pages/Main/MainQuizListPage";
+import { useAuthStore } from "@/store/authStore";
+import { Background } from "@/background/Background";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
-import { Background } from "./background/Background";
-import { MainQuizDetailPage } from "./pages/Main/MainQuizDetailPage";
-import AdminQuizUpdator from "./pages/AdminQuizUpdator";
-import MemoryWordGame from "./miryangspecial/memoryquiz/MemoryWordGame";
-import Alzheimer from "./miryangspecial/alzheimer/Alzheimer";
-import AlzheimerResult from "./miryangspecial/alzheimer/AlzheimerResult";
-import CognitiveSurvey from "./miryangspecial/cognitiveSurvey/CognitiveSurvey";
-import CognitiveResult from "./miryangspecial/cognitiveSurvey/CognitiveResult";
+import MainPage from "@/pages/MainPage";
+import AdminPage from "@/pages/AdminPage";
+import { MainQuizListPage } from "@/pages/Main/MainQuizListPage";
+import { MainQuizDetailPage } from "@/pages/Main/MainQuizDetailPage";
+import AdminQuizUpdator from "@/pages/AdminQuizUpdator";
 
-function App() {
+import MiryangRoutes from "./miryangspecial/MiryangRoutes";
+
+export default function AppRoutes() {
   const initialize = useAuthStore((state) => state.initialize);
 
   useEffect(() => {
@@ -23,6 +21,7 @@ function App() {
 
   return (
     <Routes>
+      {/* 기본 */}
       <Route
         path="/"
         element={
@@ -42,6 +41,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/quiz/:quizId"
         element={
@@ -52,16 +52,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/quiz/result"
-        element={
-          <ProtectedRoute>
-            <Background>
-              <MainQuizDetailPage />
-            </Background>
-          </ProtectedRoute>
-        }
-      />
+
       <Route
         path="/user/management"
         element={
@@ -70,6 +61,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/user/management/update/:quizId"
         element={
@@ -78,50 +70,9 @@ function App() {
           </ProtectedRoute>
         }
       />
-      {/* --------------------------------------------------------------- */}
-      {/* 밀양시청 */}
-      <Route
-        path="/miryang/memorytest"
-        element={
-          <ProtectedRoute>
-            <MemoryWordGame />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/miryang/alzhemier"
-        element={
-          <ProtectedRoute>
-            <Alzheimer />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/miryang/alzhemier/result"
-        element={
-          <ProtectedRoute>
-            <AlzheimerResult />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/miryang/cognitive"
-        element={
-          <ProtectedRoute>
-            <CognitiveSurvey />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/miryang/cognitive/result"
-        element={
-          <ProtectedRoute>
-            <CognitiveResult />
-          </ProtectedRoute>
-        }
-      />
+
+      {/* ⭐ 밀양시청 라우트 */}
+      <MiryangRoutes />
     </Routes>
   );
 }
-
-export default App;
