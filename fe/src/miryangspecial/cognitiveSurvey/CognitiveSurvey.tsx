@@ -56,6 +56,14 @@ export default function CognitiveSurvey() {
       <div className="w-full max-w-xl flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">인지장애 선별 설문</h1>
         <span className="text-lg">{page} / 15</span>
+        <button
+          className="mb-6 px-6 py-3 rounded-lg bg-slate-700 text-lg"
+          onClick={() => {
+            navigate("/quizlist");
+          }}
+        >
+          처음으로
+        </button>
       </div>
 
       {/* Question */}

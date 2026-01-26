@@ -52,6 +52,14 @@ export default function SleepSurvey() {
         <span className="text-lg">
           {page} / {QUESTIONS.length}
         </span>
+        <button
+          className="mb-6 px-6 py-3 rounded-lg bg-slate-700 text-lg"
+          onClick={() => {
+            navigate("/quizlist");
+          }}
+        >
+          처음으로
+        </button>
       </div>
 
       {/* Question */}
@@ -98,8 +106,6 @@ export default function SleepSurvey() {
       <p className="mt-8 text-sm text-white/70 text-center max-w-xl">
         ※ 본 설문은 자가진단용이며 의학적 진단을 대체하지 않습니다.
       </p>
-
-      <img src="/icon/키오에듀-로고.png" className="mt-10 w-32" />
     </div>
   );
 }
