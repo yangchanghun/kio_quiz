@@ -76,7 +76,6 @@ function App() {
     // </Routes>
     <div
       style={{
-        color: "white",
         height: "100vh",
         display: "flex",
         alignItems: "center",
