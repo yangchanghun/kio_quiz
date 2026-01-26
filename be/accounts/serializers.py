@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import User
-from rest_framework.authtoken.models import Token
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
@@ -25,35 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
     
-# from django.contrib.auth import authenticate
-# from rest_framework_simplejwt.tokens import RefreshToken
-
-
-# class LoginSerializer(serializers.Serializer):
-#     phone = serializers.CharField()
-#     password = serializers.CharField()
-
-#     def validate(self, data):
-#         user = authenticate(
-#             phone=data["phone"],
-#             password=data["password"],
-#         )
-
-#         if not user:
-#             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
-
-#         refresh = RefreshToken.for_user(user)
-
-#         return {
-#             "access": str(refresh.access_token),
-#             "refresh": str(refresh),
-#             "user": {
-#                 "id": user.id,
-#                 "phone": user.phone,
-#                 "name": user.name,
-#                 "company": user.company,
-#             },
-#         }
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class LoginSerializer(serializers.Serializer):
@@ -61,25 +34,18 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
     def validate(self, data):
-        phone = data["phone"]
+        user = authenticate(
+            phone=data["phone"],
+            password=data["password"],
+        )
 
-        if not User.objects.filter(phone=phone).exists():
-            raise serializers.ValidationError({
-                "debug_phone": repr(phone),
-                "db_phones": list(User.objects.values_list("phone", flat=True)),
-            })
+        if not user:
+            raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
 
-        user = User.objects.get(phone=phone)
-
-        if not user.check_password(data["password"]):
-            raise serializers.ValidationError({
-                "debug_password": "password mismatch",
-            })
-
-        token, _ = Token.objects.get_or_create(user=user)
+        refresh = RefreshToken.for_user(user)
 
         return {
-            "token": token.key,
+            "token": str(refresh.access_token),
             "user": {
                 "id": user.id,
                 "phone": user.phone,
@@ -87,3 +53,4 @@ class LoginSerializer(serializers.Serializer):
                 "company": user.company,
             },
         }
+
