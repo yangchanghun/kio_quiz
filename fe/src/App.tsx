@@ -9,6 +9,8 @@ import { Background } from "./background/Background";
 import { MainQuizDetailPage } from "./pages/Main/MainQuizDetailPage";
 import AdminQuizUpdator from "./pages/AdminQuizUpdator";
 import MemoryWordGame from "./miryangspecial/memoryquiz/MemoryWordGame";
+import Alzheimer from "./miryangspecial/alzheimer/Alzheimer";
+import AlzheimerResult from "./miryangspecial/alzheimer/AlzheimerResult";
 
 function App() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -79,6 +81,22 @@ function App() {
         element={
           <ProtectedRoute>
             <MemoryWordGame />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/miryang/alzhemier"
+        element={
+          <ProtectedRoute>
+            <Alzheimer />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/miryang/alzhemier/result"
+        element={
+          <ProtectedRoute>
+            <AlzheimerResult />
           </ProtectedRoute>
         }
       />

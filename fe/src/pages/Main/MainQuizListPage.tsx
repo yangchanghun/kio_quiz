@@ -38,6 +38,12 @@ export const MainQuizListPage = () => {
   const miryangQuizList: MiryangQuiz[] = [
     {
       id: 123,
+      title: "치매 선별 설문지",
+      thumbnail: "/miryang/memory.png",
+      domain: "/miryang/alzhemier",
+    },
+    {
+      id: 123,
       title: "기억력테스트",
       thumbnail: "/miryang/memory.png",
       domain: "/miryang/memorytest",
