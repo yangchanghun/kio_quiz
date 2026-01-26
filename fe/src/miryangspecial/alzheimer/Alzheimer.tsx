@@ -41,7 +41,7 @@ export default function Alzheimer() {
 
   const next = () => {
     if (page === 15) {
-      navigate("/miryang/alzheimier/result", {
+      navigate("/miryang/alzhemier/result", {
         state: { totalScore: score },
       });
     } else {
