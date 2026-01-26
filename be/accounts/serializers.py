@@ -11,14 +11,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ("phone", "name", "company", "password1", "password2")
 
     def validate(self, data):
-        # ✅ 비밀번호 일치 체크
         if data["password1"] != data["password2"]:
             raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")
-
-        # ✅ 길이 체크 (4자리 이상)
-        if len(data["password1"]) < 4:
-            raise serializers.ValidationError("비밀번호는 4자리 이상이어야 합니다.")
-
         return data
 
     def create(self, validated_data):
@@ -31,8 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
     
-from django.contrib.auth import authenticate
-from rest_framework_simplejwt.tokens import RefreshToken
+# from django.contrib.auth import authenticate
+# from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # class LoginSerializer(serializers.Serializer):
@@ -48,10 +42,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 #         if not user:
 #             raise serializers.ValidationError("전화번호 또는 비밀번호가 틀렸습니다.")
 
-#         # refresh = RefreshToken.for_user(user)
-#         token, created = Token.objects.get_or_create(user=user)
+#         refresh = RefreshToken.for_user(user)
+
 #         return {
-#             "token": token.key,
+#             "access": str(refresh.access_token),
+#             "refresh": str(refresh),
 #             "user": {
 #                 "id": user.id,
 #                 "phone": user.phone,
@@ -59,6 +54,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 #                 "company": user.company,
 #             },
 #         }
+
 
 class LoginSerializer(serializers.Serializer):
     phone = serializers.CharField()
