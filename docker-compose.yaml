@@ -41,6 +41,8 @@ services:
 
   db:
     image: postgres:16
+    ports:
+      - "5436:5432" # ⭐ 이 줄 추가
     environment:
       POSTGRES_DB: kioedu
       POSTGRES_USER: rheavision
