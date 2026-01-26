@@ -1,4 +1,4 @@
-// src/routes/MiryangRoutes.tsx
+// src/routes/miryangspecial/MiryangRoutes.tsx
 import { Route } from "react-router-dom";
 import { ProtectedRoute } from "@/routes/ProtectedRoute";
 
@@ -26,6 +26,7 @@ export default function MiryangRoutes() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/miryang/alzhemier"
         element={
@@ -42,6 +43,7 @@ export default function MiryangRoutes() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/miryang/cognitive"
         element={
@@ -58,8 +60,9 @@ export default function MiryangRoutes() {
           </ProtectedRoute>
         }
       />
+
       <Route
-        path="/miryang/depression/result"
+        path="/miryang/depression"
         element={
           <ProtectedRoute>
             <DepressionSurvey />
@@ -74,8 +77,9 @@ export default function MiryangRoutes() {
           </ProtectedRoute>
         }
       />
+
       <Route
-        path="/miryang/stress/result"
+        path="/miryang/stress"
         element={
           <ProtectedRoute>
             <StressSurvey />
@@ -83,15 +87,16 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/sress/result"
+        path="/miryang/stress/result"
         element={
           <ProtectedRoute>
             <StressResult />
           </ProtectedRoute>
         }
       />
+
       <Route
-        path="/miryang/sleep/result"
+        path="/miryang/sleep"
         element={
           <ProtectedRoute>
             <SleepSurvey />
@@ -106,6 +111,7 @@ export default function MiryangRoutes() {
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/miryang/older/guide"
         element={
