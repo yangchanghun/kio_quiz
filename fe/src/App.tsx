@@ -11,6 +11,8 @@ import AdminQuizUpdator from "./pages/AdminQuizUpdator";
 import MemoryWordGame from "./miryangspecial/memoryquiz/MemoryWordGame";
 import Alzheimer from "./miryangspecial/alzheimer/Alzheimer";
 import AlzheimerResult from "./miryangspecial/alzheimer/AlzheimerResult";
+import CognitiveSurvey from "./miryangspecial/cognitiveSurvey/CognitiveSurvey";
+import CognitiveResult from "./miryangspecial/cognitiveSurvey/CognitiveResult";
 
 function App() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -76,6 +78,8 @@ function App() {
           </ProtectedRoute>
         }
       />
+      {/* --------------------------------------------------------------- */}
+      {/* 밀양시청 */}
       <Route
         path="/miryang/memorytest"
         element={
@@ -97,6 +101,22 @@ function App() {
         element={
           <ProtectedRoute>
             <AlzheimerResult />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/miryang/cognitive"
+        element={
+          <ProtectedRoute>
+            <CognitiveSurvey />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/miryang/cognitive/result"
+        element={
+          <ProtectedRoute>
+            <CognitiveResult />
           </ProtectedRoute>
         }
       />

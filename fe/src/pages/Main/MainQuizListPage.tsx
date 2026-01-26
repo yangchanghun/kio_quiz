@@ -44,6 +44,12 @@ export const MainQuizListPage = () => {
     },
     {
       id: 123,
+      title: "인지교육",
+      thumbnail: "/miryang/memory.png",
+      domain: "/miryang/cognitive",
+    },
+    {
+      id: 123,
       title: "기억력테스트",
       thumbnail: "/miryang/memory.png",
       domain: "/miryang/memorytest",
