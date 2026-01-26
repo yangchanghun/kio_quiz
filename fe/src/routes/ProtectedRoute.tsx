@@ -8,7 +8,11 @@ export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 
   // ⏳ 아직 인증 상태 확인 중
   if (!initialized) {
-    return null; // 또는 로딩 UI
+    return (
+      <div style={{ color: "white", textAlign: "center", marginTop: "40vh" }}>
+        Loading...
+      </div>
+    );
   }
 
   // ❌ 로그인 안 됨
