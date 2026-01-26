@@ -1,7 +1,6 @@
 services:
   backend:
     build: ./be
-    container_name: kioquiz_backend
     env_file:
       - ./be/.env
     command: >
@@ -18,9 +17,9 @@ services:
 
   nginx:
     image: nginx:stable-alpine
-    container_name: kioquiz_nginx
     ports:
       - "8090:80"
+      - "8444:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./fe/dist:/usr/share/nginx/html
@@ -33,7 +32,6 @@ services:
 
   db:
     image: postgres:16
-    container_name: kioquiz_db
     environment:
       POSTGRES_DB: kioedu
       POSTGRES_USER: rheavision

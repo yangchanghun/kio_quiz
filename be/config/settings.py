@@ -99,7 +99,7 @@ DATABASES = {
         "NAME": "kioedu",
         "USER": "rheavision",
         "PASSWORD": "16444907",
-        "HOST": "kioquiz_db",
+        "HOST": "db",
         "PORT": "5432",
     }
 }
