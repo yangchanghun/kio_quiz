@@ -1,5 +1,4 @@
-// src/routes/miryangspecial/MiryangRoutes.tsx
-import { Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "@/routes/ProtectedRoute";
 
 import MemoryWordGame from "@/miryangspecial/memoryquiz/MemoryWordGame";
@@ -15,11 +14,11 @@ import SleepSurvey from "./sleep/SleepSurvey";
 import SleepResult from "./sleep/SleepResult";
 import OlderGuide from "./guide/OlderGuide";
 
-export default function MiryangRoutes() {
+export default function MiryangLayout() {
   return (
-    <>
+    <Routes>
       <Route
-        path="/miryang/memorytest"
+        path="memorytest"
         element={
           <ProtectedRoute>
             <MemoryWordGame />
@@ -28,7 +27,7 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/alzhemier"
+        path="alzhemier"
         element={
           <ProtectedRoute>
             <Alzheimer />
@@ -36,7 +35,7 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/alzhemier/result"
+        path="alzhemier/result"
         element={
           <ProtectedRoute>
             <AlzheimerResult />
@@ -45,7 +44,7 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/cognitive"
+        path="cognitive"
         element={
           <ProtectedRoute>
             <CognitiveSurvey />
@@ -53,7 +52,7 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/cognitive/result"
+        path="cognitive/result"
         element={
           <ProtectedRoute>
             <CognitiveResult />
@@ -62,7 +61,7 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/depression"
+        path="depression"
         element={
           <ProtectedRoute>
             <DepressionSurvey />
@@ -70,7 +69,7 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/depression/result"
+        path="depression/result"
         element={
           <ProtectedRoute>
             <DepressionResult />
@@ -79,7 +78,7 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/stress"
+        path="stress"
         element={
           <ProtectedRoute>
             <StressSurvey />
@@ -87,7 +86,7 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/stress/result"
+        path="stress/result"
         element={
           <ProtectedRoute>
             <StressResult />
@@ -96,7 +95,7 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/sleep"
+        path="sleep"
         element={
           <ProtectedRoute>
             <SleepSurvey />
@@ -104,7 +103,7 @@ export default function MiryangRoutes() {
         }
       />
       <Route
-        path="/miryang/sleep/result"
+        path="sleep/result"
         element={
           <ProtectedRoute>
             <SleepResult />
@@ -113,13 +112,13 @@ export default function MiryangRoutes() {
       />
 
       <Route
-        path="/miryang/older/guide"
+        path="older/guide"
         element={
           <ProtectedRoute>
             <OlderGuide />
           </ProtectedRoute>
         }
       />
-    </>
+    </Routes>
   );
 }

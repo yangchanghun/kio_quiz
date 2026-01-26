@@ -10,7 +10,7 @@ import { MainQuizListPage } from "@/pages/Main/MainQuizListPage";
 import { MainQuizDetailPage } from "@/pages/Main/MainQuizDetailPage";
 import AdminQuizUpdator from "@/pages/AdminQuizUpdator";
 
-import MiryangRoutes from "./miryangspecial/MiryangRoutes";
+import MiryangLayout from "./miryangspecial/MiryangRoutes";
 
 export default function AppRoutes() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -72,7 +72,7 @@ export default function AppRoutes() {
       />
 
       {/* ⭐ 밀양시청 라우트 */}
-      <MiryangRoutes />
+      <Route path="/miryang/*" element={<MiryangLayout />} />
     </Routes>
   );
 }
