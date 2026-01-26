@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import User
-
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
@@ -55,8 +56,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 #         }
 
 
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
+
 
 class LoginSerializer(serializers.Serializer):
     phone = serializers.CharField()
