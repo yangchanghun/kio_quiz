@@ -49,3 +49,15 @@ services:
       - pgdata_user:/var/lib/postgresql/data
     networks:
       - kioquiz_network
+
+volumes:
+  media_volume:
+  static_volume:
+  pgdata_user:
+
+networks:
+  kioquiz_network:
+    driver: bridge
+
+  kioedu_network:
+    external: true
