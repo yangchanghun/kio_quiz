@@ -15,6 +15,13 @@ services:
     networks:
       - kioquiz_network
 
+  frontend:
+    build: ./fe
+    volumes:
+      - ./fe/dist:/app/dist
+    networks:
+      - kioquiz_network
+
   nginx:
     image: nginx:stable-alpine
     ports:
@@ -27,9 +34,10 @@ services:
       - media_volume:/app/media
     depends_on:
       - backend
+      - frontend
     networks:
       - kioquiz_network
-      - kioedu_network # ⭐ NPM 네트워크
+      - kioedu_network
 
   db:
     image: postgres:16
@@ -41,15 +49,3 @@ services:
       - pgdata_user:/var/lib/postgresql/data
     networks:
       - kioquiz_network
-
-volumes:
-  media_volume:
-  static_volume:
-  pgdata_user:
-
-networks:
-  kioquiz_network:
-    driver: bridge
-
-  kioedu_network:
-    external: true
