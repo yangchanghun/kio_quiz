@@ -3,6 +3,7 @@ import { pageTransitionClass } from "@/utils/pageTransitionClass";
 import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import { useQuizList } from "@/hooks/useQuizList";
+import { useRef } from "react";
 
 type Quiz = {
   id: number;
@@ -79,7 +80,8 @@ export const MainQuizListPage = () => {
       domain: "/miryang/memorytest",
     },
   ];
-
+  const clickCountRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   return (
     <div className="flex-1 flex flex-col overflow-y-auto">
       <div
@@ -88,15 +90,30 @@ export const MainQuizListPage = () => {
         )} transition-all duration-500 ease-in-out`}
       >
         {/* 상단 */}
+
         <p
           onClick={() => {
-            navigate("/user/management");
+            clickCountRef.current += 1;
+
+            // 타이머 리셋
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+
+            // 1.5초 안에 5번 클릭
+            timerRef.current = setTimeout(() => {
+              clickCountRef.current = 0;
+            }, 1500);
+
+            if (clickCountRef.current >= 5) {
+              clickCountRef.current = 0;
+              navigate("/user/management");
+            }
           }}
-          className="mb-2"
+          className="mb-2 select-none cursor-pointer"
         >
           {user?.name}
         </p>
-
         <div
           role="button"
           onClick={handleLogoutClick}

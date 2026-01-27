@@ -41,8 +41,33 @@
 import type { ChoicesType } from "@/types/ChoicesType";
 import type { QuestionsType, QuestionType } from "@/types/QuesionsType";
 
+/*
+참고 ㄱㄱ
+.children-traffic-image-slot {
+  width: 100%;
+  height: 200px;
+  background: #e6f4ff;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.children-traffic-image-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+*/
+
 export const choices1: ChoicesType[] = [
-  { id: 1, label: "바퀴벌레", image: "1-1question.png" },
+  {
+    id: 1,
+    label:
+      "바퀴벌레는 곤충류로 채소에 속하지 않습니다.바퀴벌레는 곤충류로 채소에 속하지 않습니다.",
+    image: "1-1question.png",
+  },
   { id: 2, label: "토마토" },
   { id: 3, label: "브로콜리", image: "tomato.png" },
   { id: 4, label: "양상추" },

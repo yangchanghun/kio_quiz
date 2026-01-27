@@ -1,5 +1,5 @@
 import { ProgressBar } from "@/components/common/ProgressBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ChoicesType } from "@/types/ChoicesType";
 import { ChoicesBoxText } from "@/components/common/ChoicesBoxText";
 import { Toggle } from "@/components/common/Toggle";
@@ -10,6 +10,8 @@ import { pageTransitionClass } from "@/utils/pageTransitionClass";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { MainQuizResultPage } from "./MainQuizResultPage";
+import { preloadImages } from "@/utils/preLoadImages";
+import type { QuestionsType } from "@/types/QuesionsType";
 
 export const MainQuizDetailPage = () => {
   const { quizId } = useParams<{ quizId: string }>();
@@ -18,6 +20,21 @@ export const MainQuizDetailPage = () => {
 
   // 🔥 Hook은 전부 최상단
   const { data, isLoading, isError } = useQuizDetail(Number(quizId));
+
+  useEffect(() => {
+    if (!data) return;
+
+    const imageUrls: string[] = [];
+
+    data.questions.forEach((q: QuestionsType) => {
+      if (q.image) imageUrls.push(q.image);
+      q.choices.forEach((c) => {
+        if (c.image) imageUrls.push(c.image);
+      });
+    });
+
+    preloadImages(imageUrls);
+  }, [data]);
 
   console.log(data);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -150,10 +167,10 @@ export const MainQuizDetailPage = () => {
                 }`}
               >
                 {choice.image && (
-                  <div className="h-28">
+                  <div className="h-28  bg-[#e6f4ff]">
                     <img
                       src={choice.image}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full  object-contain"
                     />
                   </div>
                 )}

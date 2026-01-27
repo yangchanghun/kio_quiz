@@ -7,9 +7,11 @@ import type {
 } from "@/types/auth";
 
 // ✅ 공통 baseURL
-const BASE_URL = import.meta.env.PROD
-  ? "https://kioquiz.kioedu.co.kr/api"
-  : "http://localhost:8000/api";
+// const BASE_URL = import.meta.env.PROD
+//   ? "https://kioquiz.kioedu.co.kr/api"
+//   : "http://localhost:8000/api";
+
+const BASE_URL = "https://kioquiz.kioedu.co.kr/api";
 
 // 🔹 회원가입
 export const registerApi = async (payload: RegisterPayload) => {
