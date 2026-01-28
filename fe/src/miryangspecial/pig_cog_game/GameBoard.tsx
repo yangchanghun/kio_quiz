@@ -7,6 +7,11 @@ import { RefreshCw, Check } from "lucide-react";
 /* =======================
  * 타입 정의
  * ======================= */
+type GameBoardProps = {
+  totalQuestions: number;
+  onFinish: () => void;
+};
+
 type Direction = "up" | "down" | "left" | "right";
 
 type CellType = "empty" | "start" | "tree" | "house" | "apple" | "pond";
@@ -98,7 +103,7 @@ const puzzles: Puzzle[] = [
 /* =======================
  * GameBoard
  * ======================= */
-const GameBoard = () => {
+const GameBoard = ({ totalQuestions, onFinish }: GameBoardProps) => {
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0);
   const [selectedDestination, setSelectedDestination] =
     useState<CellType | null>(null);
@@ -140,10 +145,21 @@ const GameBoard = () => {
   };
 
   const handleNextPuzzle = useCallback(() => {
-    setCurrentPuzzleIndex((i) => (i + 1) % puzzles.length);
+    setCurrentPuzzleIndex((i) => {
+      const next = i + 1;
+
+      // ⭐ 마지막 문제면 게임 종료
+      if (next >= totalQuestions) {
+        onFinish();
+        return i; // 더 이상 진행 ❌
+      }
+
+      return next;
+    });
+
     setSelectedDestination(null);
     setShowResult(false);
-  }, []);
+  }, [totalQuestions, onFinish]);
 
   const handleReset = () => {
     setCurrentPuzzleIndex(0);
@@ -173,7 +189,7 @@ const GameBoard = () => {
       {/* 상단 정보 */}
       <div className="flex gap-4 text-lg font-medium">
         <span className="bg-secondary px-4 py-2 rounded-full">
-          문제 {currentPuzzleIndex + 1} / {puzzles.length}
+          문제 {currentPuzzleIndex + 1} / {totalQuestions}
         </span>
         <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full">
           점수 {score}
