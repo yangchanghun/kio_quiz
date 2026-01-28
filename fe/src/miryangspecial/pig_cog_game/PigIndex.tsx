@@ -66,6 +66,14 @@ const PigIndex = () => {
           <p className="text-muted-foreground text-lg">
             화살표를 따라 돼지가 어디로 가는지 맞춰보세요!
           </p>
+          <button
+            className="mb-6 px-6 py-3 rounded-lg text-white bg-slate-700 text-lg"
+            onClick={() => {
+              navigate("/quizlist");
+            }}
+          >
+            처음으로
+          </button>
         </header>
 
         {/* Game */}
