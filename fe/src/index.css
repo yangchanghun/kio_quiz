@@ -41,3 +41,282 @@ button:focus-visible {
 html {
   scrollbar-width: none;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap");
+
+@layer base {
+  :root {
+    /* Warm pastel cognitive game palette */
+    --background: 35 40% 97%;
+    --foreground: 25 30% 25%;
+
+    --card: 35 35% 95%;
+    --card-foreground: 25 30% 25%;
+
+    --popover: 35 35% 95%;
+    --popover-foreground: 25 30% 25%;
+
+    /* Soft coral pink - main brand */
+    --primary: 10 70% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Soft mint green */
+    --secondary: 145 45% 80%;
+    --secondary-foreground: 145 40% 25%;
+
+    /* Cream beige */
+    --muted: 35 30% 90%;
+    --muted-foreground: 25 20% 50%;
+
+    /* Soft sky blue accent */
+    --accent: 200 60% 80%;
+    --accent-foreground: 200 50% 25%;
+
+    /* Soft orange for alerts */
+    --destructive: 25 80% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 25% 85%;
+    --input: 35 25% 88%;
+    --ring: 10 70% 70%;
+
+    --radius: 1rem;
+
+    /* Game-specific colors */
+    --game-path: 35 30% 85%;
+    --game-grass: 100 40% 88%;
+    --game-pig: 350 65% 75%;
+    --game-tree: 130 45% 55%;
+    --game-house: 25 70% 65%;
+    --game-apple: 0 70% 60%;
+    --game-pond: 200 60% 70%;
+    --game-arrow: 25 50% 45%;
+    --game-success: 145 55% 55%;
+    --game-highlight: 45 90% 70%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 25 20% 12%;
+    --foreground: 35 30% 92%;
+
+    --card: 25 20% 15%;
+    --card-foreground: 35 30% 92%;
+
+    --popover: 25 20% 15%;
+    --popover-foreground: 35 30% 92%;
+
+    --primary: 10 65% 65%;
+    --primary-foreground: 25 20% 10%;
+
+    --secondary: 145 35% 35%;
+    --secondary-foreground: 145 40% 90%;
+
+    --muted: 25 15% 20%;
+    --muted-foreground: 35 20% 60%;
+
+    --accent: 200 45% 40%;
+    --accent-foreground: 200 40% 95%;
+
+    --destructive: 25 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 15% 25%;
+    --input: 25 15% 22%;
+    --ring: 10 65% 65%;
+
+    --game-path: 25 15% 25%;
+    --game-grass: 100 25% 20%;
+    --game-pig: 350 50% 60%;
+    --game-tree: 130 35% 40%;
+    --game-house: 25 55% 50%;
+    --game-apple: 0 55% 50%;
+    --game-pond: 200 45% 50%;
+    --game-arrow: 25 40% 70%;
+    --game-success: 145 45% 45%;
+    --game-highlight: 45 70% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: "Noto Sans KR", sans-serif;
+  }
+}
+
+@layer components {
+  .game-card {
+    @apply bg-card rounded-3xl shadow-lg border-4 border-primary/20;
+  }
+
+  .arrow-button {
+    @apply w-16 h-16 rounded-2xl bg-muted flex items-center justify-center
+           text-game-arrow transition-all duration-200
+           hover:scale-105 hover:bg-primary/20;
+  }
+
+  .arrow-button-active {
+    @apply bg-primary text-primary-foreground scale-110 shadow-md;
+  }
+
+  .destination-button {
+    @apply w-20 h-20 rounded-2xl transition-all duration-300
+           hover:scale-110 cursor-pointer border-4 border-transparent;
+  }
+
+  .destination-button-selected {
+    @apply border-game-highlight ring-4 ring-game-highlight/50 scale-110;
+  }
+
+  .destination-button-correct {
+    @apply border-game-success ring-4 ring-game-success/50 animate-bounce;
+  }
+
+  .destination-button-wrong {
+    @apply border-destructive ring-4 ring-destructive/50 animate-shake;
+  }
+
+  .path-cell {
+    @apply w-full h-full rounded-lg transition-colors duration-200;
+  }
+
+  .path-road {
+    @apply bg-game-path;
+  }
+
+  .path-grass {
+    @apply bg-game-grass;
+  }
+
+  .pig-character {
+    @apply text-game-pig drop-shadow-md;
+  }
+}
+
+@layer utilities {
+  .text-game-arrow {
+    color: hsl(var(--game-arrow));
+  }
+
+  .bg-game-path {
+    background-color: hsl(var(--game-path));
+  }
+
+  .bg-game-grass {
+    background-color: hsl(var(--game-grass));
+  }
+
+  .text-game-pig {
+    color: hsl(var(--game-pig));
+  }
+
+  .text-game-tree {
+    color: hsl(var(--game-tree));
+  }
+
+  .text-game-house {
+    color: hsl(var(--game-house));
+  }
+
+  .text-game-apple {
+    color: hsl(var(--game-apple));
+  }
+
+  .text-game-pond {
+    color: hsl(var(--game-pond));
+  }
+
+  .bg-game-success {
+    background-color: hsl(var(--game-success));
+  }
+
+  .border-game-highlight {
+    border-color: hsl(var(--game-highlight));
+  }
+
+  .ring-game-highlight\/50 {
+    --tw-ring-color: hsl(var(--game-highlight) / 0.5);
+  }
+
+  .border-game-success {
+    border-color: hsl(var(--game-success));
+  }
+
+  .ring-game-success\/50 {
+    --tw-ring-color: hsl(var(--game-success) / 0.5);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop {
+  animation: pop 0.4s ease-out;
+}

@@ -4,6 +4,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import { useQuizList } from "@/hooks/useQuizList";
 import { useRef } from "react";
+import PigCharacter from "@/miryangspecial/pig_cog_game/PigCharacter";
 
 type Quiz = {
   id: number;
@@ -144,6 +145,33 @@ export const MainQuizListPage = () => {
             gap-4
           "
         >
+          <button
+            onClick={() => {
+              navigate("/miryang/pigcoggame");
+            }}
+            className="
+           w-[130px]
+          h-[140px]
+          bg-white
+          rounded-2xl
+          shadow-lg
+          flex
+          flex-col
+          items-center
+          justify-between
+          p-3
+          active:scale-95
+          transition-transform
+          mb-4
+          mr-4
+
+          "
+          >
+            <PigCharacter size={120} />
+            <span className="text-xs font-semibold text-black text-center">
+              길찾기인지향상게임
+            </span>
+          </button>
           {user?.name === "밀양시청" &&
             miryangQuizList.map((quiz) => (
               <button
@@ -185,10 +213,18 @@ export const MainQuizListPage = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-
-                <span className="text-sm font-semibold text-black text-center">
+                {quiz.title.length >= 9 ? (
+                  <span className="text-xs font-semibold text-black text-center">
+                    {quiz.title}
+                  </span>
+                ) : (
+                  <span className="text-sm font-semibold text-black text-center">
+                    {quiz.title}
+                  </span>
+                )}
+                {/* <span className="text-sm font-semibold text-black text-center">
                   {quiz.title}
-                </span>
+                </span> */}
               </button>
             ))}
           {quizList?.map((quiz: Quiz) => (

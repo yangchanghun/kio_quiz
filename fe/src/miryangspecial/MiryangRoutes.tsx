@@ -13,10 +13,20 @@ import StressResult from "./stress/StressResult";
 import SleepSurvey from "./sleep/SleepSurvey";
 import SleepResult from "./sleep/SleepResult";
 import OlderGuide from "./guide/OlderGuide";
+import PigIndex from "./pig_cog_game/PigIndex";
 
 export default function MiryangLayout() {
   return (
     <Routes>
+      <Route
+        path="pigcoggame"
+        element={
+          <ProtectedRoute>
+            <PigIndex />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="memorytest"
         element={
