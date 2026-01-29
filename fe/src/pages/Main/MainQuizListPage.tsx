@@ -118,7 +118,7 @@ export const MainQuizListPage = () => {
         <div
           role="button"
           onClick={handleLogoutClick}
-          className="absolute top-4 left-4 text-sm text-white/80 hover:text-white"
+          className="absolute bottom-1 right-4 text-sm text-white/80 hover:text-white"
         >
           로그아웃
         </div>
